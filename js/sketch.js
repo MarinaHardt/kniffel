@@ -24,49 +24,49 @@ let rollAll = new RollAllButton(
   380,
   110,
   30,
-  "Roll All",
+  "Würfeln: ",
   dice,
   counterClick
 );
 
-let row1 = new Row(150, 70, 110, 30, "Einser: ", dice, 1, counterClick, state);
-let row2 = new Row(150, 110, 110, 30, "Zweier: ", dice, 2, counterClick, state);
-let row3 = new Row(150, 150, 110, 30, "Dreier: ", dice, 3, counterClick, state);
-let row4 = new Row(150, 190, 110, 30, "Vierer: ", dice, 4, counterClick, state);
-let row5 = new Row(150, 230, 110, 30, "Fünfer: ", dice, 5, counterClick, state);
-let row6 = new Row(
+let row1 = new Row(150, 70, 110, 30, "Einser: ", dice, 1, counterClick);
+let row2 = new Row(150, 110, 110, 30, "Zweier: ", dice, 2, counterClick);
+let row3 = new Row(150, 150, 110, 30, "Dreier: ", dice, 3, counterClick);
+let row4 = new Row(150, 190, 110, 30, "Vierer: ", dice, 4, counterClick);
+let row5 = new Row(150, 230, 110, 30, "Fünfer: ", dice, 5, counterClick);
+let row6 = new Row(150, 270, 110, 30, "Sechser: ", dice, 6, counterClick);
+let sum = new Sum(
   150,
-  270,
+  340,
   110,
   30,
-  "Sechser: ",
-  dice,
-  6,
-  counterClick,
-  state
+  "Gesamt: ",
+  row1,
+  row2,
+  row3,
+  row4,
+  row5,
+  row6
 );
-let sum = new Sum(150, 340, 110, 30, "Gesamt: ", dice, 6);
-let restart = new restartButton(500, 275, 110, 30, "Neustart", state);
-
-function startScreen() {
-  if (mouseIsPressed) {
-    state[0] = 1;
-  }
-
-  background("#2c103e");
-
-  noStroke();
-  fill("#cd8b36");
-
-  imageMode(CENTER);
-  image(kniffel, windowWidth / 2, 200, 700, 238);
-
-  textAlign(CENTER, CENTER);
-  textSize(15);
-  text("K  L  I  C  K", windowWidth / 2, 400);
-}
+let restart = new restartButton(
+  500,
+  275,
+  110,
+  30,
+  "Neustart",
+  state,
+  row1,
+  row2,
+  row3,
+  row4,
+  row5,
+  row6,
+  dice
+);
 
 function mouseClicked() {
+  restart.mouseClicked();
+
   for (let index in dice) {
     dice[index].mouseClicked();
   }
@@ -78,8 +78,40 @@ function mouseClicked() {
   row4.mouseClicked();
   row5.mouseClicked();
   row6.mouseClicked();
+}
 
-  restart.mouseClicked();
+function startScreen() {
+  if (mouseIsPressed) {
+    state[0] = 1;
+  }
+
+  background("#2c103e");
+  imageMode(CENTER);
+  image(kniffel, windowWidth / 2, 200, 700, 238);
+  noStroke();
+  fill("#cd8b36");
+  textAlign(CENTER, CENTER);
+  textSize(15);
+  text("K  L  I  C  K", windowWidth / 2, 400);
+}
+
+function newGame() {
+  restart.display();
+
+  row1.display();
+  row2.display();
+  row3.display();
+  row4.display();
+  row5.display();
+  row6.display();
+
+  for (let index in dice) {
+    dice[index].display();
+  }
+  rollAll.display();
+  sum.display();
+
+  image(kniffel, 550, 175, 500, 170);
 }
 
 function draw() {
@@ -90,25 +122,12 @@ function draw() {
   }
 
   if (state[0] === 1) {
-    row1.display();
-    row2.display();
-    row3.display();
-    row4.display();
-    row5.display();
-    row6.display();
-
-    for (let index in dice) {
-      dice[index].display();
-    }
-    rollAll.display();
-    sum.display();
-    restart.display();
-
-    image(kniffel, 550, 175, 500, 170);
+    newGame();
   }
 }
 
 window.preload = preload;
-window.startScreen = startScreen;
 window.mouseClicked = mouseClicked;
+window.startScreen = startScreen;
+window.newGame = newGame;
 window.draw = draw;

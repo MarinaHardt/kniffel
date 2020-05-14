@@ -1,12 +1,15 @@
-import Row from "./board.js";
+import Button from "./button.js";
 
-export default class Sum extends Row {
-  constructor(x, y, width, height, text, wurfel, value) {
+export default class Sum extends Button {
+  constructor(x, y, width, height, text, row1, row2, row3, row4, row5, row6) {
     super(x, y, width, height);
     this.text = text;
-    this.wurfel = wurfel;
-    this.value = value;
-    this.enabled = true;
+    this.row1 = row1;
+    this.row2 = row2;
+    this.row3 = row3;
+    this.row4 = row4;
+    this.row5 = row5;
+    this.row6 = row6;
   }
   display() {
     fill("#4d385a");
@@ -16,19 +19,11 @@ export default class Sum extends Row {
     fill("#cd8b36");
     textSize(15);
     textAlign(LEFT, CENTER);
-    text(this.text, this.x + 15, this.y + this.height / 2);
+    text(this.text + this.sumAll(), this.x + 15, this.y + this.height / 2);
   }
 
-  countEyes() {
-    let counter = 0;
-    // Jeden Würfel durchgehen
-    for (let index in this.wurfel) {
-      // this.wurfel[index].value = Wert des Würfels, this.value = Wert der row
-      if (this.wurfel[index].value === this.value) {
-        counter++;
-      }
-    }
-    let result = counter * this.value;
-    return result;
+  sumAll() {
+    let gesamt = 0;
+    return gesamt;
   }
 }

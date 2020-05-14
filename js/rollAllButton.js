@@ -9,11 +9,16 @@ export default class RollAllButton extends Button {
     this.counterClick = counterClick;
   }
   display() {
+    // 0x gewürfelt
     if (this.counterClick[0] === 0) {
       fill("#cd8b36");
-    } else if (this.counterClick[0] === 3 || this.enabled === false) {
+    }
+    // bis 3x gewürfelt
+    else if (this.counterClick[0] === 3 || this.enabled === false) {
       fill("#4d385a");
-    } else {
+    }
+    // 3x gewürfelt
+    else {
       fill("#8b5a39");
     }
     rect(this.x, this.y, this.width, this.height, this.width / 15);
@@ -21,17 +26,30 @@ export default class RollAllButton extends Button {
     fill("#2c103e");
     textSize(15);
     textAlign(CENTER, CENTER);
-    text(this.title, this.x + this.width / 2, this.y + this.height / 2);
+    text(
+      this.title + this.countTimesRoll() + "/3",
+      this.x + this.width / 2,
+      this.y + this.height / 2
+    );
+  }
+  // Anzeigen wie oft man gewürfelt hat
+  countTimesRoll() {
+    if (this.counterClick[0] <= 3) {
+      return this.counterClick[0];
+    } else if (this.counterClick[0] > 3) {
+      return 3;
+    }
   }
 
   clicked() {
+    // zählt, wie oft auf den RollAllButton geclickt wurde = würfeln
     this.counterClick[0]++;
-    // Falls gedrückt würfelt er die Würfel
-    // Bei Klick Würfel aktivieren/deaktivieren
-    if (this.counterClick[0] === 4) {
+    // nach dem 3. Wurf ist der Button deaktiviert
+    if (this.counterClick[0] > 3) {
       this.enabled = false;
     } else if (this.counterClick[0] <= 3) {
       this.enabled = true;
+      // geht den Array der Würfel durch
       for (let index in this.dice) {
         this.dice[index].roll();
       }
