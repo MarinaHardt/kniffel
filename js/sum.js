@@ -9,11 +9,11 @@ export default class Sum extends Row {
     this.enabled = true;
   }
   display() {
-    fill("lightgrey");
+    fill("#4d385a");
     rect(this.x, this.y, this.width, this.height, this.width / 15);
 
     noStroke();
-    fill("white");
+    fill("#cd8b36");
     textSize(15);
     textAlign(LEFT, CENTER);
     text(this.text, this.x + 15, this.y + this.height / 2);

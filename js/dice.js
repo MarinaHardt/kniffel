@@ -22,12 +22,14 @@ export default class Dice extends Button {
   display() {
     // Farbe bei Aktivierung/ Deaktivierung der Würfel
     if (this.enabled) {
-      fill("pink");
+      fill("#cd8b36");
+      rect(this.x, this.y, 60, 60, 6);
+      fill("#2c103e");
     } else {
-      fill("grey");
+      fill("#4d385a");
+      rect(this.x, this.y, 60, 60, 6);
+      fill("#2c103e");
     }
-    rect(this.x, this.y, 60, 60, 6);
-    fill("white");
     noStroke();
     // Augenzahlen
     if (this.value == 1) {
