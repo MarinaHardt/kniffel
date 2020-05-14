@@ -4,6 +4,11 @@ import Row from "./board.js";
 import Sum from "./sum.js";
 import restartButton from "./restartButton.js";
 
+let kniffel;
+function preload() {
+  kniffel = loadImage("assets/kniffel.png");
+}
+
 let state = [0];
 let counterClick = [0];
 
@@ -41,7 +46,7 @@ let row6 = new Row(
   state
 );
 let sum = new Sum(150, 340, 110, 30, "Gesamt: ", dice, 6);
-let restart = new restartButton(280, 70, 110, 30, "Neustart", state);
+let restart = new restartButton(500, 275, 110, 30, "Neustart", state);
 
 function startScreen() {
   if (mouseIsPressed) {
@@ -53,11 +58,12 @@ function startScreen() {
   noStroke();
   fill("#cd8b36");
 
-  //image(kniffel, 100, 100, 100, 100);
+  imageMode(CENTER);
+  image(kniffel, windowWidth / 2, 200, 700, 238);
 
   textAlign(CENTER, CENTER);
   textSize(15);
-  text("C L I C K  A N Y W H E R E", windowWidth / 2, 100);
+  text("K  L  I  C  K", windowWidth / 2, 400);
 }
 
 function mouseClicked() {
@@ -97,9 +103,12 @@ function draw() {
     rollAll.display();
     sum.display();
     restart.display();
+
+    image(kniffel, 550, 175, 500, 170);
   }
 }
 
+window.preload = preload;
 window.startScreen = startScreen;
 window.mouseClicked = mouseClicked;
 window.draw = draw;
