@@ -10,6 +10,7 @@ export default class Sum extends Button {
     this.row4 = row4;
     this.row5 = row5;
     this.row6 = row6;
+    this.fixedValue = 0;
   }
   display() {
     fill("#4d385a");
@@ -24,6 +25,12 @@ export default class Sum extends Button {
 
   sumAll() {
     let gesamt = 0;
+    gesamt += this.row1.fixedValue;
+    gesamt += this.row2.fixedValue;
+    gesamt += this.row3.fixedValue;
+    gesamt += this.row4.fixedValue;
+    gesamt += this.row5.fixedValue;
+    gesamt += this.row6.fixedValue;
     return gesamt;
   }
 }

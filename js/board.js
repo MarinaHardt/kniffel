@@ -8,6 +8,7 @@ export default class Row extends Button {
     this.value = value;
     this.enabled = true;
     this.counterClick = counterClick;
+    this.fixedvalue = 0;
   }
   display() {
     let display;
@@ -53,9 +54,6 @@ export default class Row extends Button {
       // Würfel werden wieder aktiviert
       for (let index in this.wurfel) {
         this.wurfel[index].enabled = true;
-        for (let index in this.wurfel) {
-          this.wurfel[index].roll();
-        }
       }
     }
   }
