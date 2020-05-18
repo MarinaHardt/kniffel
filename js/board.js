@@ -49,20 +49,22 @@ export default class Row extends Button {
       this.enabled = false;
       // Wert bleibt konstant und ändert sich nicht mehr
       this.fixedvalue = this.countEyes();
-      // Clickzähler wird wieder auf 0 gesetzt
-      this.counterClick[0] = 0;
+      // Clickzähler wird wieder auf Anfang gesetzt
+      this.counterClick[0] = 1;
       // Würfel werden wieder aktiviert
       for (let index in this.wurfel) {
         this.wurfel[index].enabled = true;
+        this.wurfel[index].roll();
       }
     }
   }
 
   restart() {
     this.enabled = true;
-    this.counterClick[0] = 0;
+    this.counterClick[0] = 1;
     for (let index in this.wurfel) {
       this.wurfel[index].enabled = true;
+      this.wurfel[index].roll();
     }
   }
 }

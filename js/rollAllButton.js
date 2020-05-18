@@ -10,7 +10,7 @@ export default class RollAllButton extends Button {
   }
   display() {
     // 0x gewürfelt
-    if (this.counterClick[0] === 0) {
+    if (this.counterClick[0] === 1) {
       fill("#cd8b36");
     }
     // bis 3x gewürfelt
@@ -34,9 +34,9 @@ export default class RollAllButton extends Button {
   }
   // Anzeigen wie oft man gewürfelt hat
   countTimesRoll() {
-    if (this.counterClick[0] <= 3) {
+    if (this.counterClick[0] <= 2) {
       return this.counterClick[0];
-    } else if (this.counterClick[0] > 3) {
+    } else if (this.counterClick[0] > 2) {
       return 3;
     }
   }

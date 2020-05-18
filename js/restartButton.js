@@ -14,6 +14,7 @@ export default class restartButton extends Button {
     row4,
     row5,
     row6,
+    sum,
     dice
   ) {
     super(x, y, width, height);
@@ -25,6 +26,7 @@ export default class restartButton extends Button {
     this.row4 = row4;
     this.row5 = row5;
     this.row6 = row6;
+    this.sum = sum;
     this.dice = dice;
   }
   display() {
@@ -40,15 +42,13 @@ export default class restartButton extends Button {
   clicked() {
     if (this.state[0] === 1) {
       this.state[0] = 0;
+      this.sum.restart();
       this.row1.restart();
       this.row2.restart();
       this.row3.restart();
       this.row4.restart();
       this.row5.restart();
       this.row6.restart();
-      for (let index in this.dice) {
-        this.dice[index].roll();
-      }
     }
   }
 }

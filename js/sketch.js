@@ -10,7 +10,7 @@ function preload() {
 }
 
 let state = [0];
-let counterClick = [0];
+let counterClick = [1];
 
 // For-Schleife für die Erstellung der Würfel
 let dice = [];
@@ -60,6 +60,7 @@ let restart = new restartButton(
   row4,
   row5,
   row6,
+  sum,
   dice
 );
 

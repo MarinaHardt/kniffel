@@ -32,4 +32,12 @@ export default class Sum extends Button {
     gesamt += this.row6.fixedvalue;
     return gesamt;
   }
+  restart() {
+    this.row1.fixedvalue = 0;
+    this.row2.fixedvalue = 0;
+    this.row3.fixedvalue = 0;
+    this.row4.fixedvalue = 0;
+    this.row5.fixedvalue = 0;
+    this.row6.fixedvalue = 0;
+  }
 }
