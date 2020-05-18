@@ -19,16 +19,6 @@ for (let i = 0; i < 5; i++) {
   dice.push(d);
 }
 
-let rollAll = new RollAllButton(
-  150,
-  380,
-  110,
-  30,
-  "Würfeln: ",
-  dice,
-  counterClick
-);
-
 let row1 = new Row(150, 70, 110, 30, "Einser: ", dice, 1, counterClick);
 let row2 = new Row(150, 110, 110, 30, "Zweier: ", dice, 2, counterClick);
 let row3 = new Row(150, 150, 110, 30, "Dreier: ", dice, 3, counterClick);
@@ -47,6 +37,15 @@ let sum = new Sum(
   row4,
   row5,
   row6
+);
+let rollAll = new RollAllButton(
+  150,
+  380,
+  110,
+  30,
+  "Würfeln: ",
+  dice,
+  counterClick
 );
 let restart = new restartButton(
   500,
